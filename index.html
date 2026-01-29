@@ -36,6 +36,10 @@
                     </p></li>
                     <li><p> Pytorch datatypes such as fp32, tf32, ocp fp8, mx fp8, mx fp4; scaling, scaled_mm gemm, matmul gemm kernels.
                     </p></li>
+					<li><p> Implemented Pytorch Group Gemm operator / Mixture of Experts, using composable kernel library.
+						    <a href=https://github.com/pytorch/pytorch/pull/166334>https://github.com/pytorch/pytorch/pull/166334</a>
+							Handled 2d 2d, 2d 3d, 3d 2d, 3d 3d cases, group gemm for loop blaslt mm case, worked on improving performance, fp8 scaled group gemm.
+                    </p></li>
                     <li><p> Maintenance of Upstream Pytorch, release Pytorch branches, ROCm fork Pytorch branches.
                       <a href=https://github.com/ROCm/pytorch>https://github.com/ROCm/pytorch</a> .
                     </p></li>
