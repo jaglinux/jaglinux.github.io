@@ -22,36 +22,43 @@
                 <p class="name" style="text-align: center;">
                   Jagadish Krishnamoorthy
                 </p>
-                <p>I'm a AI frameworks / Pytorch and AI models Engineer at <a href="https://www.amd.com/en.html">AMD</a> in San Francisco Bay Area. 
-                  &ensp;Contributing to open source projects in personal and professional experience on a day to day basis.</a><br>
-                  I deal with Python, C/C++, CMake, Jenkins, Dockers/container technology for development of AI workloads on GPU.
+                <p>
+                  PyTorch engineer at <a href="https://www.amd.com/en.html">AMD</a>, San Francisco Bay Area, focused on making large-scale AI workloads run efficiently on AMD GPUs.
+                  90+ merged pull requests across <a href="data/pytorch-commits.html">PyTorch</a> and <a href="data/torchao-commits.html">TorchAO</a>, spanning low-precision numeric kernels, operator implementation, and distributed training infrastructure.
+                  Served on the PyTorch Conference 2026 Program Committee (North America and Europe) and presented research on Group GEMM at the conference.
                 </p>
                 <p>
-                  At AMD I've worked on Pytorch, ONNX RT, DeepSpeed, Apex, HF Transformer, AI models training and inference.</br>
-                  Open source Contributor to Pytorch, DeepSpeed, ONNX RT and other AI frameworks.
                   <ul>
-                    <li><p> Integrating AI frameworks such as Pytorch with <a href="https://github.com/ROCm">ROCm</a> AMD GPU AI SW stack.
+                    <li><p>
+                      <strong>Low-precision quantization and GEMM:</strong>
+                      Core contributor to PyTorch's FP8 and MX (OCP Microscaling) support on AMD hardware — <code>scaled_mm</code> kernels, tensorwise and blockwise scaling, pre-swizzled MX FP8/FP4 scale layouts for gfx950 (MI350) and gfx1250.
+                      Contributed MX FP8/FP4 swizzle kernels and FP8 quantization to <a href="https://github.com/pytorch/ao">TorchAO</a>.
+                      This work directly enables efficient inference for quantized LLMs on AMD GPUs.
                     </p></li>
-                    <li><p> Integrating libraries such as BLAS, BLASLT, magma with Pytorch.
+                    <li><p>
+                      <strong>Group GEMM / Mixture of Experts:</strong>
+                      Authored PyTorch's Group GEMM operator for MoE models (<a href="https://github.com/pytorch/pytorch/pull/166334">#166334</a>), built on AMD's <a href="https://github.com/ROCmSoftwarePlatform/composable_kernel">Composable Kernel</a> library.
+                      Covers all 2D/3D tensor dimension combinations, hipBLASLt fallback, FP8 scaled group GEMM, and a specialized kernel for uniform-K batches.
+                      Directly relevant to MoE architectures such as Mixtral and DeepSeek running on AMD hardware.
                     </p></li>
-                    <li><p> Pytorch datatypes such as fp32, tf32, ocp fp8, mx fp8, mx fp4; scaling, scaled_mm gemm, matmul gemm kernels.
+                    <li><p>
+                      <strong>ROCm backend ownership:</strong>
+                      Deep contributor to PyTorch's <a href="https://github.com/ROCm">ROCm</a> backend — hipBLASLt workspace tuning, CK-Tile GEMM integration, rocBLAS overloads, Magma, and architecture onboarding for new AMD GPUs (gfx950, gfx1250, gfx90a, gfx115x).
+                      Unified GEMM and SDPA architecture gating, deduplicated scaling paths across CUDA and ROCm, and maintained ROCm CI health across releases.
                     </p></li>
-					<li><p> Implemented Pytorch Group Gemm operator / Mixture of Experts, using composable kernel library.
-						    <a href=https://github.com/pytorch/pytorch/pull/166334>https://github.com/pytorch/pytorch/pull/166334</a>
-							Handled 2d 2d, 2d 3d, 3d 2d, 3d 3d cases, group gemm for loop blaslt mm case, worked on improving performance, fp8 scaled group gemm.
+                    <li><p>
+                      <strong>Distributed training:</strong>
+                      Contributions to <code>torch.distributed</code>, <code>c10d</code>, and RCCL — enabled and hardened ROCm distributed CI across DDP, sharded tensor, and multi-process test suites.
+                      Multi-node, multi-GPU training and inference of LLMs (GPT, LLaMA, BERT) on AMD hardware using PyTorch, DeepSpeed, and HuggingFace Transformers.
                     </p></li>
-                    <li><p> Maintenance of Upstream Pytorch, release Pytorch branches, ROCm fork Pytorch branches.
-                      <a href=https://github.com/ROCm/pytorch>https://github.com/ROCm/pytorch</a> .
-                    </p></li>
-                    <li><p> torch.cuda, distributed, c10d modules, single/multi GPUs training and inference using Pytorch DDP/DP.
-                      RCCL / NCCL communications, training and inference of AI models such as GPT, Llama, Bert, Cifar and transformer based LLM models.
-                    </p></li>
-                    <li><p> GPU architecture, memory, streams, CUDA/HIP working knowledge, AI software stack ranging from application layer to GPU hardware.
-                    </p></li>
-                    <li><p> GPU Cloud: Multi node, multi GPU AI / ML workload distributed training using PyTorch, Composer, HuggingFace, Slurm / k8s usage for HPC jobs, Python Django project.<br>
+                    <li><p>
+                      <strong>Ecosystem and maintenance:</strong>
+                      Maintains upstream PyTorch, release branches, and the <a href="https://github.com/ROCm/pytorch">ROCm PyTorch fork</a>.
+                      Contributed ROCm compatibility fixes across ONNX Runtime, DeepSpeed, and Apex.
+                      Experience with multi-node HPC clusters using Slurm and Kubernetes for large-scale AI jobs.
                     </p></li>
                   </ul>
-                  <hr> 
+                  <hr>
                 </p>
                 <h3>
                   My social links
