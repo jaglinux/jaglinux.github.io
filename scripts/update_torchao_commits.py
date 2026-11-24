@@ -18,6 +18,22 @@ AUTHOR_EMAILS = [
 # Co-authored PRs that cannot be found via author-email search.
 COAUTHORED_PRS = {}
 
+# Commits on unmerged branches — static, always included in the output.
+# Format: (branch_url, [commit_title, ...])
+# Add new branches here as needed; they survive every workflow run.
+BRANCH_COMMITS = [
+    (
+        "https://github.com/jagadish-amd/ao/commits/implement_mx_fp4_swizzle/",
+        [
+            "Add mx fp4 swizzle",
+            "Implement no block for ROCm < 7.13",
+            "Add swizzle type SwizzleType.SWIZZLE_32_4_4",
+            "Add mxfp8 swizzle",
+            "Use SwizzleType.SWIZZLE_32_8 for MX block scales on gfx950",
+        ],
+    ),
+]
+
 GH_TOKEN = os.environ.get("GH_TOKEN", "")
 HEADERS = {
     "Accept": "application/vnd.github+json",
@@ -64,6 +80,33 @@ def extract_pr(message):
 def clean_title(message):
     first_line = message.split('\n')[0].strip()
     return re.sub(r'\s*\(#\d+\)\s*$', '', first_line)
+
+
+def build_branch_section():
+    sections = []
+    for branch_url, titles in BRANCH_COMMITS:
+        rows = "\n".join(
+            f'                <tr>'
+            f'<td style="padding:5px 10px;border:1px solid #ddd;">{i}</td>'
+            f'<td style="padding:5px 10px;border:1px solid #ddd;">{html.escape(t)}</td>'
+            f'</tr>'
+            for i, t in enumerate(titles, 1)
+        )
+        sections.append(f"""
+            <h3>Branch commits</h3>
+            <p>Branch: <a href="{branch_url}">{branch_url}</a></p>
+            <table style="width:100%;border-collapse:collapse;font-size:0.9em;">
+              <thead>
+                <tr style="background:#f2f2f2;">
+                  <th style="padding:6px 10px;text-align:left;border:1px solid #ddd;">#</th>
+                  <th style="padding:6px 10px;text-align:left;border:1px solid #ddd;">Title</th>
+                </tr>
+              </thead>
+              <tbody>
+{rows}
+              </tbody>
+            </table>""")
+    return "\n".join(sections)
 
 
 def build_html(sorted_prs, today):
@@ -124,7 +167,7 @@ def build_html(sorted_prs, today):
 {chr(10).join(rows)}
               </tbody>
             </table>
-
+{build_branch_section()}
             <p>
               <a href="../index.html">Back to home</a>
             </p>
